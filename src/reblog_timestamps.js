@@ -1,33 +1,33 @@
-import {reactLoaded, indexBy, classList, reactFiber, element} from '/src/util.js';
+import {classList, element, indexBy, reactFiber, reactLoaded} from '/src/util.js';
 import webcrack3 from '/src/webcrack3.js';
 
 const allClasses = name => classList(webcrack3.findExportedName(name));
 
-const addTimestampsToPost = async element => {
-  const post = reactFiber(element).return;
+const addTimestampsToPost = async postElement => {
+  const post = reactFiber(postElement).return;
   const {
-    timelineObject: {trail, content, id: postId, timestamp},
+    timelineObject: {trail, content, id: postId, timestamp: postTimestamp},
     appContext: {apiFetch},
   } = post.memoizedProps;
 
   if (trail.length) {
     const reblogHeaders = indexBy(
-      element.querySelectorAll(allClasses('reblogHeader')),
+      postElement.querySelectorAll(allClasses('reblogHeader')),
       header => reactFiber(header).return.return.key
     );
 
-    trail.map(async ({post: {id}, blog: {uuid}}) => {
+    trail.map(async({post: {id}, blog: {uuid}}) => {
       const {response: {timestamp}} = await apiFetch(`/v2/blog/${uuid}/posts/${id}`);
       reblogHeaders[id].append(reblogTimestampEl(timestamp));
     });
 
     if (content.length) {
-      reblogHeaders[String(postId)].append(reblogTimestampEl(timestamp));
+      reblogHeaders[String(postId)].append(reblogTimestampEl(postTimestamp));
     }
   } else {
-    element.querySelector('header').append(postTimestampEl(timestamp));
+    postElement.querySelector('header').append(postTimestampEl(postTimestamp));
   }
-}
+};
 
 const reblogTimestampEl = timestamp => element('span', span => {
   span.textContent = new Date(timestamp * 1000).toLocaleString();
@@ -63,5 +63,4 @@ document.head.append(element('style', style => {
   `;
 }));
 
-reactLoaded.then(() => document.querySelectorAll("article").forEach(addTimestampsToPost));
-
+reactLoaded.then(() => document.querySelectorAll('article').forEach(addTimestampsToPost));
