@@ -1,0 +1,25 @@
+{
+  "manifest_version": 2,
+  "name": "vriska",
+  "description": "xkit vriska",
+  "version": "0.0.1",
+  "icons": {
+    "179": "icons/vriska-179.png",
+    "64": "icons/vriska-64.png",
+    "32": "icons/vriska-32.png"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "*://www.tumblr.com/*"
+      ],
+      "run_at": "document_idle",
+      "js": [
+        "inject.js"
+      ]
+    }
+  ],
+  "web_accessible_resources": [
+    "src/*.js"
+  ]
+}
