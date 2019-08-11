@@ -1,8 +1,9 @@
 // With acknowledgments to zoe bootsy.
 // Copyright 2019, licensed under the GPL v3.0 or later.
 
+let webcrack3;
 const webcrack3_injection = (_module, _exports, require) => {
-    window.webcrack3 = {
+    webcrack3 = {
         require,
         moduleFunctions: require.m,
         findModuleFunctionWithSourceLike (string_or_regex) {
@@ -19,9 +20,11 @@ const webcrack3_injection = (_module, _exports, require) => {
                 filter(m => m.exports && m.exports[key]).
                 map(m => m.exports[key]);
         }
-    }
+    };
 }
 
 (window.webpackJsonp = window.webpackJsonp || []).push([
     [1337], {webcrack3_injection}, [['webcrack3_injection']]
 ]);
+
+export default webcrack3;

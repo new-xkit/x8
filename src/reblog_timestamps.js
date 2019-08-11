@@ -1,7 +1,9 @@
+import {reactLoaded, indexBy, classList, reactFiber, element} from '/src/util.js';
+import webcrack3 from '/src/webcrack3.js';
 
 const allClasses = name => classList(webcrack3.findExportedName(name));
 
-const addTimestampsToPost = element => {
+const addTimestampsToPost = async element => {
   const post = reactFiber(element).return;
   const {
     timelineObject: {trail, content, id: postId, timestamp},
@@ -61,4 +63,5 @@ document.head.append(element('style', style => {
   `;
 }));
 
-document.querySelectorAll("article").forEach(addTimestampsToPost);
+reactLoaded.then(() => document.querySelectorAll("article").forEach(addTimestampsToPost));
+
