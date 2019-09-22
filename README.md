@@ -10,5 +10,5 @@ to install into chrome:
  - click "Load unpacked extension" and select the folder you cloned the repo into
 
 to install into firefox:
- - clone the repo 
+ - clone the repo
  - run `npx web-ext run`
