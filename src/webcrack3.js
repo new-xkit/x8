@@ -12,7 +12,7 @@ const webcrack3_injection = (_module, _exports, require) => {
         string_or_regex.test.bind(string_or_regex);
 
       return Object.entries(this.moduleFunctions).
-        filter((_name, func) => predicate(func.toString()));
+        filter(([_name, func]) => predicate(func.toString()));
     },
     loadedModules: require.c,
     findExportedName(key) {

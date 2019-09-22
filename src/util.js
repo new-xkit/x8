@@ -14,15 +14,16 @@ export const classList = classes => classes.map(c => `.${c}`).join(',');
 export const indexBy = (iter, func) => Object.fromEntries(Array.from(iter).map(i => [func(i), i]));
 
 // hehehe
-Object.prototype.tap = function(f) { f(this); return this; };
-export const element = (name, init) => document.createElement(name).tap(init);
+// Object.prototype.tap = function(f) { f(this); return this; };
+export const tap = (o, f) => { f(o); return o};
+export const element = (name, init) => tap(document.createElement(name), init);
 export const reactLoaded = new Promise((resolve, reject) => {
   let tries = 0;
   const check = () => {
     if (document.querySelector('#root')._reactRootContainer) {
       resolve();
     }
-    if (tries++ > 50) {
+    if (tries++ > 500) {
       reject();
     }
     setTimeout(check, 100);

@@ -4,7 +4,7 @@ import webcrack3 from '/src/webcrack3.js';
 const allClasses = name => classList(webcrack3.findExportedName(name));
 
 const addTimestampsToPost = async postElement => {
-  const post = reactFiber(postElement).return;
+  const post = reactFiber(postElement).return.return;
   const {
     timelineObject: {trail, content, id: postId, timestamp: postTimestamp},
     appContext: {apiFetch},
