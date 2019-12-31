@@ -2,7 +2,7 @@
   "name": "x8",
   "version": "0.0.1",
   "homepage": "https://new-xkit-extension.tumblr.com/",
-  "license": "GPL-3.0",
+  "license": "AGPL-3.0",
   "browser": "inject.js",
   "devDependencies": {
     "webextension-polyfill": "^0.6.0",
