@@ -4,10 +4,12 @@
   "homepage": "https://new-xkit-extension.tumblr.com/",
   "license": "AGPL-3.0",
   "browser": "inject.js",
+  "dependencies": {
+    "webextension-polyfill": "^0.6.0"
+  },
   "devDependencies": {
     "copyfiles": "^2.1.1",
-    "web-ext": "^4.0.0",
-    "webextension-polyfill": "^0.6.0"
+    "web-ext": "^4.0.0"
   },
   "scripts": {
     "postinstall": "copyfiles -f node_modules/webextension-polyfill/dist/browser-polyfill.min.js vendor/"
