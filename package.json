@@ -5,10 +5,10 @@
   "license": "AGPL-3.0",
   "browser": "inject.js",
   "dependencies": {
+    "copyfiles": "^2.1.1",
     "webextension-polyfill": "^0.6.0"
   },
   "devDependencies": {
-    "copyfiles": "^2.1.1",
     "web-ext": "^4.0.0"
   },
   "scripts": {
