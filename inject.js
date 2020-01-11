@@ -1,5 +1,4 @@
-/* globals chrome */
-const {getURL} = chrome.runtime;
+const {getURL} = browser.runtime;
 
 const installedScripts = ['reblog_timestamps', 'all_features'];
 installedScripts.forEach(name => {
