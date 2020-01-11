@@ -51,3 +51,5 @@ rules:
   space-infix-ops: [error]
   template-curly-spacing: [error]
   quote-props: [error, as-needed, {keywords: false}]
+globals:
+  browser: true
