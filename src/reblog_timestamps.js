@@ -13,7 +13,7 @@ const addTimestampsToPost = async postElement => {
   if (trail.length) {
     const reblogHeaders = indexBy(
       postElement.querySelectorAll(allClasses('reblogHeader')),
-      header => reactFiber(header).return.return.key
+      header => reactFiber(header).return.return.key,
     );
 
     trail.map(async({post: {id}, blog: {uuid}}) => {

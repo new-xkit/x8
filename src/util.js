@@ -15,7 +15,7 @@ export const indexBy = (iter, func) => Object.fromEntries(Array.from(iter).map(i
 
 // hehehe
 // Object.prototype.tap = function(f) { f(this); return this; };
-export const tap = (o, f) => { f(o); return o};
+export const tap = (o, f) => { f(o); return o; };
 export const element = (name, init) => tap(document.createElement(name), init);
 export const reactLoaded = new Promise((resolve, reject) => {
   let tries = 0;

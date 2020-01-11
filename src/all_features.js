@@ -12,17 +12,17 @@ const someFeatures = [
 
 const featureFlagsModuleKey = () =>
   Object.entries(webcrack3.moduleFunctions).find(([key, func]) =>
-    someFeatures.filter(i => func.toString().indexOf(i) != -1).length > 2
+    someFeatures.filter(i => func.toString().indexOf(i) != -1).length > 2,
   )[0];
 
-const firstChildStateNode = (root) => {
+const firstChildStateNode = root => {
   let current = root;
   while (current = current.child) {
     if (current.stateNode) {
       return current.stateNode;
     }
   }
-}
+};
 
 reactLoaded.then(() => {
   const FeatureFlags = webcrack3.require(featureFlagsModuleKey());
