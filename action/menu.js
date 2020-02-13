@@ -5,18 +5,13 @@ const installedScripts = [
 
 const scriptsList = document.querySelector('#scripts ul');
 const writeEnabled = () => {
-  const enabledScripts = [];
+  const enabledScripts = installedScripts.map(
+    script => document.getElementById(script.name).checked ? script.name : undefined,
+  ).filter(x => x !== undefined);
 
-  for (const listItem of scriptsList.children) {
-    const input = listItem.getElementsByTagName('input')[0];
-    if (input.checked === true) {
-      enabledScripts.push(input.id);
-    }
-  }
-
-  browser.storage.local.set(
-    {enabledScripts},
-  ).catch(console.error);
+  browser.storage.local.set({
+    enabledScripts,
+  }).catch(console.error);
 };
 
 browser.storage.local.get('enabledScripts').then(({enabledScripts}) => {
