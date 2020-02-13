@@ -1,8 +1,6 @@
 const {getURL} = browser.runtime;
 
-browser.storage.local.get('enabledScripts').then(results => {
-  const {enabledScripts} = results;
-
+browser.storage.local.get('enabledScripts').then(({enabledScripts}) => {
   enabledScripts.forEach(name => {
     const script = document.createElement('script');
     script.type = 'module';

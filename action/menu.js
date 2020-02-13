@@ -30,7 +30,6 @@ installedScripts.forEach(script => {
   document.getElementById(script.name).oninput = writeEnabled;
 });
 
-browser.storage.local.get('enabledScripts').then(results => {
-  const {enabledScripts} = results;
+browser.storage.local.get('enabledScripts').then(({enabledScripts}) => {
   enabledScripts.forEach(scriptName => document.getElementById(scriptName).checked = true);
 });
