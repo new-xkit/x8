@@ -3,7 +3,7 @@ const installedScripts = [
   {name: 'all_features', title: 'All Features'},
 ];
 
-const scriptsList = document.getElementById('scriptslist');
+const scriptsList = document.querySelector('#scripts ul');
 const writeEnabled = () => {
   const enabledScripts = [];
 

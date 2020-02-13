@@ -2,16 +2,17 @@ section {
     width: 100%;
     padding: 0 20px;
 }
-#scriptslist {
+#scripts ul {
     padding: 0;
     list-style-type: none;
 }
-#scriptslist li {
+#scripts ul li {
     padding: 0.5ch 0;
 }
-#scriptslist li > * {
-    vertical-align: middle;
+#scripts ul li {
+    display: flex;
+    align-items: center;
 }
-#scriptslist li label {
+#scripts ul li label {
     padding-left: 1ch;
 }
