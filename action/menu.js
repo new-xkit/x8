@@ -19,17 +19,24 @@ const writeEnabled = () => {
   ).catch(console.error);
 };
 
-installedScripts.forEach(script => {
-  const listItem = document.createElement('li');
-  listItem.innerHTML = `
-    <input type="checkbox" id="${script.name}">
-    <label for="${script.name}">${script.title}</label>
-  `;
-
-  scriptsList.appendChild(listItem);
-  document.getElementById(script.name).oninput = writeEnabled;
-});
-
 browser.storage.local.get('enabledScripts').then(({enabledScripts}) => {
-  enabledScripts.forEach(scriptName => document.getElementById(scriptName).checked = true);
+  enabledScripts = enabledScripts || [];
+
+  installedScripts.forEach(script => {
+    const listItem = document.createElement('li');
+    const input = document.createElement('input');
+    const label = document.createElement('label');
+    listItem.appendChild(input);
+    listItem.appendChild(label);
+
+    input.id = script.name;
+    input.setAttribute('type', 'checkbox');
+    input.checked = enabledScripts.includes(script.name);
+    input.oninput = writeEnabled;
+
+    label.setAttribute('for', script.name);
+    label.innerText = script.title;
+
+    scriptsList.appendChild(listItem);
+  });
 });
