@@ -3,8 +3,18 @@ import webcrack3 from '/src/webcrack3.js';
 
 const allClasses = name => classList(webcrack3.findExportedName(name));
 
+const parentWithProp = (fiber, propName) => {
+  if (!fiber.memoizedProps) {
+    fiber = reactFiber(fiber);
+  }
+  while (fiber && !fiber.memoizedProps.hasOwnProperty(propName)) {
+    fiber = fiber.return;
+  }
+  return fiber;
+}
+
 const addTimestampsToPost = async postElement => {
-  const post = reactFiber(postElement).return.return;
+  const post = parentWithProp(postElement, 'timelineObject');
   const {
     timelineObject: {trail, content, id: postId, timestamp: postTimestamp},
     appContext: {apiFetch},
@@ -63,4 +73,6 @@ document.head.append(element('style', style => {
   `;
 }));
 
-reactLoaded.then(() => document.querySelectorAll('article').forEach(addTimestampsToPost));
+reactLoaded.then(() => {
+  document.querySelectorAll('article').forEach(addTimestampsToPost);
+});
