@@ -14,7 +14,7 @@
   "content_scripts": [
     {
       "matches": [
-        "*://www.tumblr.com/*"
+        "*://*.tumblr.com/*"
       ],
       "run_at": "document_idle",
       "js": [
