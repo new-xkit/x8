@@ -3,6 +3,8 @@ const redpop = [...document.scripts].filter(i => i.src.match('/pop/')).length;
 
 if (redpop) {
   browser.storage.local.get('enabledScripts').then(({enabledScripts}) => {
+    enabledScripts = enabledScripts || [];
+
     enabledScripts.forEach(name => {
       const script = document.createElement('script');
       script.type = 'module';
