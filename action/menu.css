@@ -8,11 +8,9 @@ section {
 }
 #scripts ul li {
     padding: 0.5ch 0;
-}
-#scripts ul li {
     display: flex;
     align-items: center;
 }
-#scripts ul li label {
+#scripts label {
     padding-left: 1ch;
 }
