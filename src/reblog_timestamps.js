@@ -1,6 +1,6 @@
 import {classList, element, indexBy, reactFiber, reactLoaded} from '/src/util.js';
+import postListener from '/src/postListener.js';
 import webcrack3 from '/src/webcrack3.js';
-import postListener from '/src/postListener.js'
 
 const allClasses = name => classList(webcrack3.findExportedName(name));
 
@@ -78,8 +78,5 @@ document.head.append(element('style', style => {
   `;
 }));
 
-reactLoaded.then(() => {
-  postListener.addCallback(function reblogTimestamps() {
-    document.querySelectorAll('article').forEach(addTimestampsToPost);
-  });
-});
+const reblogTimestamps = () => document.querySelectorAll('article').forEach(addTimestampsToPost);
+reactLoaded.then(() => postListener.addCallback(reblogTimestamps));

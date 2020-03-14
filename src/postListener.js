@@ -1,14 +1,14 @@
 const postListener = {
   callbacks: [],
-  addCallback: function(callback) {
+  addCallback(callback) {
     callback();
     this.callbacks.push(callback);
   },
-  removeCallback: function(callback) {
+  removeCallback(callback) {
     this.callbacks = this.callbacks.filter(i => i !== callback);
   },
   postClass: undefined,
-  observer: new MutationObserver(function(mutations) {
+  observer: new MutationObserver(mutations => {
     const newPosts = !!mutations.filter(({addedNodes}) => {
       if (!addedNodes[0] || !addedNodes[0].classList) {
         return false;
@@ -19,7 +19,7 @@ const postListener = {
     if (newPosts) {
       postListener.callbacks.forEach(i => i());
     }
-  })
+  }),
 };
 
 window.tumblr.getCssMap().then(cssMap => {
