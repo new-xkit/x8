@@ -8,6 +8,15 @@
     "64": "icons/vriska-64.png",
     "32": "icons/vriska-32.png"
   },
+  "permissions": [
+      "storage"
+  ],
+  "background": {
+    "scripts": [
+      "vendor/browser-polyfill.min.js",
+      "background.js"
+    ]
+  },
   "content_scripts": [
     {
       "matches": [
@@ -20,6 +29,16 @@
       ]
     }
   ],
+  "browser_action": {
+    "browser_style": true,
+    "default_icon": {
+      "179": "icons/vriska-179.png",
+      "64": "icons/vriska-64.png",
+      "32": "icons/vriska-32.png"
+    },
+    "default_title": "XKit",
+    "default_popup": "action/menu.html"
+  },
   "web_accessible_resources": [
     "src/*.js"
   ]

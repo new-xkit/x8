@@ -11,7 +11,7 @@ const parentWithProp = (fiber, propName) => {
     fiber = fiber.return;
   }
   return fiber;
-}
+};
 
 const addTimestampsToPost = async postElement => {
   const post = parentWithProp(postElement, 'timelineObject');
