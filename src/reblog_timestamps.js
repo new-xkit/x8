@@ -15,6 +15,10 @@ const parentWithProp = (fiber, propName) => {
 };
 
 const addTimestampsToPost = async postElement => {
+  if (postElement.querySelectorAll('.xkit-reblog-timestamp, .xkit-post-timestamp').length) {
+    return;
+  }
+
   const post = parentWithProp(postElement, 'timelineObject');
   const {
     timelineObject: {trail, content, id: postId, timestamp: postTimestamp},
