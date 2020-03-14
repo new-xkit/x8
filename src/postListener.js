@@ -10,10 +10,11 @@ const postListener = {
   postClass: undefined,
   observer: new MutationObserver(mutations => {
     const newPosts = !!mutations.filter(({addedNodes}) => {
-      if (!addedNodes[0] || !addedNodes[0].classList) {
-        return false;
+      for (const addedNode of addedNodes) {
+        if (addedNode.classList && addedNode.classList.contains(postListener.postClass)) {
+          return true;
+        }
       }
-      return addedNodes[0].classList.contains(postListener.postClass);
     }).length;
 
     if (newPosts) {
