@@ -15,7 +15,7 @@ const parentWithProp = (fiber, propName) => {
 };
 
 const addTimestampsToPost = async postElement => {
-  if (postElement.querySelectorAll('.xkit-reblog-timestamp, .xkit-post-timestamp').length) {
+  if (postElement.querySelector('.xkit-post-timestamp') !== null) {
     return;
   }
 
@@ -33,7 +33,10 @@ const addTimestampsToPost = async postElement => {
 
     trail.map(async({post: {id}, blog: {uuid}}) => {
       const {response: {timestamp}} = await apiFetch(`/v2/blog/${uuid}/posts/${id}`);
-      reblogHeaders[id].append(reblogTimestampEl(timestamp));
+
+      if (reblogHeaders[id].querySelector('.xkit-reblog-timestamp') === null) {
+        reblogHeaders[id].append(reblogTimestampEl(timestamp));
+      }
     });
 
     if (content.length) {
