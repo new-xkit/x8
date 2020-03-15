@@ -9,13 +9,13 @@ const postListener = {
   },
   postClass: undefined,
   observer: new MutationObserver(mutations => {
-    const newPosts = !!mutations.filter(({addedNodes}) => {
+    const newPosts = mutations.find(({addedNodes}) => {
       for (const addedNode of addedNodes) {
         if (addedNode.classList && addedNode.classList.contains(postListener.postClass)) {
           return true;
         }
       }
-    }).length;
+    }) !== undefined;
 
     if (newPosts) {
       postListener.callbacks.forEach(i => i());
@@ -24,11 +24,8 @@ const postListener = {
 };
 
 window.tumblr.getCssMap().then(cssMap => {
-  const [timelineClass] = cssMap['timeline'];
-  const timeline = document.querySelector(`.${timelineClass}`);
-
   postListener.postClass = cssMap['listTimelineObject'][0];
-  postListener.observer.observe(timeline, {
+  postListener.observer.observe(document.body, {
     childList: true,
     subtree: true,
   });
