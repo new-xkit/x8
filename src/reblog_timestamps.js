@@ -51,7 +51,7 @@ const postTimestampEl = timestamp => element('span', span => {
 
 document.head.append(element('style', style => {
   style.textContent = `
-    header {
+    article header[role="banner"] {
       flex-wrap: wrap;
     }
 
