@@ -81,5 +81,5 @@ document.head.append(element('style', style => {
   `;
 }));
 
-const reblogTimestamps = () => document.querySelectorAll('article').forEach(addTimestampsToPost);
-reactLoaded.then(() => postListener.addCallback(reblogTimestamps));
+const reblog_timestamps = () => document.querySelectorAll('article').forEach(addTimestampsToPost);
+reactLoaded.then(() => postListener.addCallback(reblog_timestamps));
