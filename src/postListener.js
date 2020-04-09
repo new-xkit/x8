@@ -13,7 +13,8 @@ const postListener = {
 
     const newPosts = mutations.some(({addedNodes}) => {
       for (const addedNode of addedNodes) {
-        if ((addedNode.classList && addedNode.classList.contains(postClass)) || addedNode.querySelector(`.${postClass}`) !== null) {
+        if ((addedNode.classList && addedNode.classList.contains(postClass))
+        || addedNode.querySelector(`.${postClass}`) !== null) {
           return true;
         }
       }
