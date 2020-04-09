@@ -7,31 +7,25 @@ const postListener = {
   removeCallback(callback) {
     this.callbacks = this.callbacks.filter(i => i !== callback);
   },
-  postClass: undefined,
   observer: new MutationObserver(mutations => {
-    const {postClass, callbacks} = postListener;
-
+    const selector = '[data-id]';
     const newPosts = mutations.some(({addedNodes}) => {
       for (const addedNode of addedNodes) {
-        if ((addedNode.classList && addedNode.classList.contains(postClass))
-        || addedNode.querySelector(`.${postClass}`) !== null) {
+        if (addedNode.matches(selector) || addedNode.querySelector(selector) !== null) {
           return true;
         }
       }
     });
 
     if (newPosts) {
-      callbacks.forEach(i => i());
+      postListener.callbacks.forEach(i => i());
     }
   }),
 };
 
-window.tumblr.getCssMap().then(cssMap => {
-  postListener.postClass = cssMap['listTimelineObject'][1];
-  postListener.observer.observe(document.body, {
-    childList: true,
-    subtree: true,
-  });
+postListener.observer.observe(document.body, {
+  childList: true,
+  subtree: true,
 });
 
 export default postListener;
